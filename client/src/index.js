@@ -6,11 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 
 // set up Redux
 import { Provider } from "react-redux";
-import { legacy_createStore as createStore } from "redux";
-import rootReducer from "./redux/rootReducer";
-
-const store = createStore(rootReducer);
-
+import store from "./redux/store/store";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
    <React.StrictMode>
