@@ -1,4 +1,4 @@
-import { useReducer, createContext, useContext, useEffect } from "react";
+import { useReducer, createContext, useContext } from "react";
 export const CartContext = createContext(null);
 export const CartDispatchContext = createContext(null);
 export function useCart() {
@@ -27,7 +27,10 @@ function CartReducer(state, action) {
       case "add_to_cart":
          if (state?.find((item) => item.id === action.payload.id))
             return state.map((item) => {
-               if (item.id === action.payload.id && item.size === action.payload.size) {
+               if (
+                  item.id === action.payload.id &&
+                  item.size === action.payload.size
+               ) {
                   return {
                      ...item,
                      quantity: item.quantity + action.payload.quantity,

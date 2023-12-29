@@ -4,6 +4,7 @@ import { useCart } from "./CartReducer";
 
 function CartModal({ closeModal }) {
    const productsInCart = useCart();
+   
    return (
       <div
          className="flex flex-col max-w-md p-6 space-y-4 sm:p-6 rounded-lg bg-white text-gray-00 absolute right-0 top-[80%] shadow-[0_5px_15px_0_rgba(0,0,0,0.5)] z-10"
