@@ -7,6 +7,9 @@ const app = express();
 
 app.use("/user", UserRoute);
 app.use("/product", ProductRoute);
+app.use("/", (req, res) => {
+   res.send("Welcome to my server");
+});
 
 var port = process.env.PORT || "8000";
 

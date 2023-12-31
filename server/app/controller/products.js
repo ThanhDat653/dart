@@ -109,7 +109,6 @@ export const Products = async (req, res, next) => {
 export const ProductById = async (req, res, next) => {
    try {
       let productId = req.params.id;
-      var products = productData;
       res.send(productId);
    } catch (error) {}
 };
