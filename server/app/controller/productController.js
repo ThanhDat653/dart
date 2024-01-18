@@ -1,3 +1,6 @@
+import { connection } from "../database/db.js";
+import axios from "axios";
+
 const productData = [
    {
       name: "Jordan Delta 3 Mid",
@@ -100,10 +103,32 @@ const productData = [
 ];
 
 export const Products = async (req, res, next) => {
+   // connection.connect((err) => {
+   //    if (err) {
+   //       console.error("Error connecting to database:", err);
+   //       return;
+   //    }
+   //    console.log("Connected to database");
+   let products = [];
    try {
-      var products = productData;
-      res.send(products);
-   } catch (error) {}
+      // Câu truy vấn SQL
+      const query = "SELECT * FROM Product";
+
+      // Thực hiện truy vấn
+      connection.query(query, (error, results) => {
+         if (error) {
+            console.error("Error executing query:", error);
+         } else {
+            products = results;
+            // Xử lý kết quả truy vấn (results)
+            console.log("Query results:", results);
+            res.send(JSON.stringify(products));
+         }
+      });
+   } finally {
+      // connection.end();
+   }
+   // });
 };
 
 export const ProductById = async (req, res, next) => {

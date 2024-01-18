@@ -67,7 +67,7 @@ export const productData = [
 
    {
       name: "Nike Air Max 270",
-      type: "AirMax",
+      type: "am270",
       id: "AM270-white-black",
       color: "white-black",
       size: ["37", "38", "39"],
@@ -78,7 +78,7 @@ export const productData = [
 
    {
       name: "Nike Air Max 270",
-      type: "AirMax",
+      type: "am270",
       id: "AM270-white",
       color: "white",
       size: ["37", "38", "39", "41", "43"],
@@ -89,7 +89,7 @@ export const productData = [
 
    {
       name: "Nike Air Max 270",
-      type: "AirMax",
+      type: "am270",
       id: "AM270-black",
       color: "black",
       size: ["37", "38", "39", "41", "42"],
@@ -100,3 +100,11 @@ export const productData = [
 ];
 
 // export { productData };
+
+const type = [
+   { id: "jd1", name: "Jordan 1" },
+   { id: "jd2", name: "Jordan 2" },
+   { id: "jd3", name: "Jordan 3" },
+   { id: "am270", name: "Air Max 270" },
+   { id: "am97", name: "Air Max 97" },
+];
