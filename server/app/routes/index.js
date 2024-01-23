@@ -5,20 +5,11 @@ import { UserRoute } from "./UserRoute.js";
 const router = express.Router();
 
 /* GET home page. */
-router.get("/listproduct", function (req, res, next) {
-   res.render("index", { title: "Express" });
-});
+// router.get("/listproduct", function (req, res, next) {
+//    res.render("index", { title: "Express" });
+// });
 
-router.use("/user", UserRoute);
-
-router.use("/product", ProductRoute);
-
-router.get("/test", (req, res) => {
-   res.render("sample");
-});
-
-router.get("/", (req, res) => {
-   res.render("homepage");
-});
+router.use("/api/v1/users", UserRoute);
+router.use("/api/v1/products", ProductRoute);
 
 export default router;
