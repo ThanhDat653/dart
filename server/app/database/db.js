@@ -1,16 +1,19 @@
-import { createConnection } from "mysql2";
+import { createConnection, createPool } from "mysql2";
 import dotenv from "dotenv";
 
 dotenv.config();
 
 // console.log("db_host", process.env.DB_HOST);
 
-const connection = createConnection({
+const connection = createPool({
    host: process.env.DB_HOST || "localhost",
    user: process.env.DB_USER || "root",
    password: process.env.DB_PASSWORD || "123456",
    database: process.env.DB_NAME || "dart_shop",
    port: process.env.DB_PORT || 3307,
+   waitForConnections: true,
+   connectionLimit: 10,
+   queueLimit: 10,
 });
 
 // Test DB
