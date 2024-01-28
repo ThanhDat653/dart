@@ -23,8 +23,6 @@ const checkExistanceUser = async (email) => {
          [email]
       );
 
-      console.log("user", results.length);
-
       return results.length !== 0;
    } catch (error) {
       throw error;
@@ -82,12 +80,10 @@ export const createUserService = async (req, res) => {
          [username, email, password, userId, phoneNumber, 2]
       );
 
-      console.log("created", results);
       res.status(201).json({
          message: "Người dùng đã được tạo mới thành công.",
       });
    } catch (error) {
-      console.error("Lỗi trong quá trình tạo người dùng:", error);
       res.status(500).json({
          error: "Đã xảy ra lỗi trong quá trình tạo người dùng.",
       });
