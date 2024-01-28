@@ -1,5 +1,5 @@
 import express from "express";
-import { postCreateUser } from "../controller/userController.js";
+import { createUser } from "../controller/userController.js";
 var router = express.Router();
 
 /* GET users listing. */
@@ -12,6 +12,6 @@ router.get("/:id", function (req, res, next) {
 });
 
 /* POST new user */
-router.post("/", postCreateUser);
+router.post("/", createUser);
 
 export { router as UserRoute };

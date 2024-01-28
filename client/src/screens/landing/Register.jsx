@@ -5,6 +5,7 @@ const Register = () => {
       username: "",
       email: "",
       password: "",
+      phoneNumber: "",
    });
 
    const handleOnchangeValue = (event) => {
@@ -21,7 +22,8 @@ const Register = () => {
          body: JSON.stringify(user),
       })
          .then((response) => {
-            console.log(response.status);
+            console.log("status: ", response.status);
+            console.log("message: ", response.json);
          })
          .catch((error) => {
             console.error("Lỗi:", error);
@@ -31,7 +33,7 @@ const Register = () => {
    return (
       <div className="min-h-screen flex items-center justify-center">
          <div className="bg-white p-8 rounded shadow-md w-96">
-            <h1 className="text-2xl font-semibold mb-6">Đăng ký</h1>
+            <h1 className="text-2xl font-semibold mb-6">Đăng nhập</h1>
 
             <form onSubmit={(e) => e.preventDefault()}>
                <div className="mb-4">
@@ -64,6 +66,23 @@ const Register = () => {
                      value={user.email}
                      id="email"
                      name="email"
+                     className="mt-1 p-2 w-full border rounded"
+                  />
+               </div>
+
+               <div className="mb-4">
+                  <label
+                     htmlFor="phoneNumber"
+                     className="block text-gray-600 text-sm"
+                  >
+                     Phone Number
+                  </label>
+                  <input
+                     onChange={(e) => handleOnchangeValue(e)}
+                     type="number"
+                     value={user.phoneNumber}
+                     id="phoneNumber"
+                     name="phoneNumber"
                      className="mt-1 p-2 w-full border rounded"
                   />
                </div>
