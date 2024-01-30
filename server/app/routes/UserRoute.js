@@ -12,6 +12,6 @@ router.get("/:id", function (req, res, next) {
 });
 
 /* POST new user */
-router.post("/", createUser);
-
+router.post("/register", createUser);
+router.post("/login", () => {});
 export { router as UserRoute };
