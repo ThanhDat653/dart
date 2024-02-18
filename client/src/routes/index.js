@@ -7,14 +7,17 @@ import { PATHS } from "../constants/path";
 // Hero Section
 const HeroSection = lazy(() => import("../screens/landing/RootSection"));
 
+// Authentication
+const Authentication = lazy(() => import("../screens/auth/Authentication"));
+
 // Shop
 const Shop = lazy(() => import("../screens/shop/Shop"));
 
 // Contact
-const Contact = lazy(() => import("../screens/contact/Contact"))
+const Contact = lazy(() => import("../screens/contact/Contact"));
 
 // Cart
-const Cart = lazy(() => import("../screens/cart/Cart"))
+const Cart = lazy(() => import("../screens/cart/Cart"));
 
 const LazyLoadingComponent = ({ Children }) => {
    return (
@@ -26,6 +29,17 @@ const LazyLoadingComponent = ({ Children }) => {
 const heroSectionRoute = {
    path: PATHS.HOME.IDENTITY,
    element: <LazyLoadingComponent Children={HeroSection} />,
+};
+
+const authenticationRoute = {
+   path: PATHS.AUTH.IDENTIFY,
+   element: <LazyLoadingComponent Children={Authentication} />,
+   children: [
+      {
+         path: PATHS.LOGIN.IDENTIFY,
+         element: <LazyLoadingComponent Children={Authentication} />,
+      },
+   ],
 };
 
 const shopRoute = {

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Register = () => {
+const RegisterForm = () => {
    let [user, setUser] = useState({
       username: "",
       email: "",
@@ -8,7 +8,7 @@ const Register = () => {
       phoneNumber: "",
    });
 
-   const handleOnchangeValue = (event) => {
+   const handleOnchangeValue = (event: any) => {
       setUser({ ...user, [event.target.name]: event.target.value });
    };
 
@@ -117,4 +117,4 @@ const Register = () => {
    );
 };
 
-export default Register;
+export default RegisterForm;

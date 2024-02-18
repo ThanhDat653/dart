@@ -1,4 +1,6 @@
-import { isValidEmail } from "./register";
+import { connection } from "../../database/db.js";
+import { checkExistanceUser, isValidEmail } from "./register.js";
+import { compare } from "bcrypt";
 
 const loginValidate = async (req) => {
    const { email, password } = req.body;
@@ -13,12 +15,23 @@ const loginValidate = async (req) => {
 };
 
 export const loginService = async (req, res) => {
-   try {
-      const validationError = await loginValidate(req);
+   const validationError = await loginValidate(req);
 
-      if (validationError) {
-         return res.status(400).json(validationError);
+   if (validationError) {
+      return res.status(400).json(validationError);
+   }
+
+   try {
+      const { email, password } = req.body;
+      const [results, fields] = await connection.query(
+         "SELECT * FROM User WHERE Email = ? AND Password IS NOT NULL",
+         [email]
+      );
+
+      if (results.length === 0) {
+         return { error: "Email hoặc mật khẩu không chính xác." };
       }
+      console.log(">>> User password: ", results[0].password);
 
       // Thực hiện chức năng đăng nhập
 
@@ -27,7 +40,7 @@ export const loginService = async (req, res) => {
       });
    } catch (err) {
       res.status(500).json({
-         error: "Đã xảy ra lỗi trong quá trình tạo người dùng.",
+         error: "Đã xảy ra lỗi trong quá trình đăng nhập.",
       });
    }
 };
