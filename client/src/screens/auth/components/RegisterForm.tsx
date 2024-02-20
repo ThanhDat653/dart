@@ -1,6 +1,10 @@
 import React, { useState } from "react";
-
+enum AuthState {
+   LOGIN = "Login",
+   REGISTER = "register",
+}
 const RegisterForm = () => {
+   const [isLogin, setIsLogin] = useState(AuthState.LOGIN);
    let [user, setUser] = useState({
       username: "",
       email: "",
@@ -36,22 +40,24 @@ const RegisterForm = () => {
             <h1 className="text-2xl font-semibold mb-6">Đăng ký</h1>
 
             <form onSubmit={(e) => e.preventDefault()}>
-               <div className="mb-4">
-                  <label
-                     htmlFor="username"
-                     className="block text-gray-600 text-sm"
-                  >
-                     Tên đăng nhập
-                  </label>
-                  <input
-                     onChange={(e) => handleOnchangeValue(e)}
-                     type="text"
-                     value={user.username}
-                     id="username"
-                     name="username"
-                     className="mt-1 p-2 w-full border rounded"
-                  />
-               </div>
+               {isLogin === AuthState.REGISTER && (
+                  <div className="mb-4">
+                     <label
+                        htmlFor="username"
+                        className="block text-gray-600 text-sm"
+                     >
+                        Tên đăng nhập
+                     </label>
+                     <input
+                        onChange={(e) => handleOnchangeValue(e)}
+                        type="text"
+                        value={user.username}
+                        id="username"
+                        name="username"
+                        className="mt-1 p-2 w-full border rounded"
+                     />
+                  </div>
+               )}
 
                <div className="mb-4">
                   <label
@@ -70,23 +76,24 @@ const RegisterForm = () => {
                   />
                </div>
 
-               <div className="mb-4">
-                  <label
-                     htmlFor="phoneNumber"
-                     className="block text-gray-600 text-sm"
-                  >
-                     Phone Number
-                  </label>
-                  <input
-                     onChange={(e) => handleOnchangeValue(e)}
-                     type="number"
-                     value={user.phoneNumber}
-                     id="phoneNumber"
-                     name="phoneNumber"
-                     className="mt-1 p-2 w-full border rounded"
-                  />
-               </div>
-
+               {isLogin === AuthState.REGISTER && (
+                  <div className="mb-4">
+                     <label
+                        htmlFor="phoneNumber"
+                        className="block text-gray-600 text-sm"
+                     >
+                        Phone Number
+                     </label>
+                     <input
+                        onChange={(e) => handleOnchangeValue(e)}
+                        type="number"
+                        value={user.phoneNumber}
+                        id="phoneNumber"
+                        name="phoneNumber"
+                        className="mt-1 p-2 w-full border rounded"
+                     />
+                  </div>
+               )}
                <div className="mb-6">
                   <label
                      htmlFor="password"

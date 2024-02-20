@@ -34,12 +34,6 @@ const heroSectionRoute = {
 const authenticationRoute = {
    path: PATHS.AUTH.IDENTIFY,
    element: <LazyLoadingComponent Children={Authentication} />,
-   children: [
-      {
-         path: PATHS.LOGIN.IDENTIFY,
-         element: <LazyLoadingComponent Children={Authentication} />,
-      },
-   ],
 };
 
 const shopRoute = {
@@ -58,6 +52,11 @@ export default function AllRoutes() {
          path: "/",
          element: <HomeLayout />,
          children: [shopRoute],
+      },
+      {
+         path: "/",
+         element: <HomeLayout />,
+         children: [authenticationRoute],
       },
    ]);
 }
