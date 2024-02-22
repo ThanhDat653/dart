@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+
 enum AuthState {
-   LOGIN = "Login",
+   LOGIN = "login",
    REGISTER = "register",
 }
 const RegisterForm = () => {
@@ -34,10 +35,15 @@ const RegisterForm = () => {
          });
    };
 
+   const handleOnChangeFormState = () => {
+      if (isLogin === AuthState.LOGIN) setIsLogin(AuthState.REGISTER);
+      else setIsLogin(AuthState.LOGIN);
+   };
+
    return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center z-50">
          <div className="bg-white p-8 rounded shadow-md w-96">
-            <h1 className="text-2xl font-semibold mb-6">Đăng ký</h1>
+            <h1 className="text-2xl font-semibold mb-6 uppercase">{isLogin}</h1>
 
             <form onSubmit={(e) => e.preventDefault()}>
                {isLogin === AuthState.REGISTER && (
@@ -113,11 +119,19 @@ const RegisterForm = () => {
 
                <button
                   type="submit"
-                  className="bg-blue-500 text-white p-2 rounded w-full"
+                  className="bg-blue-500 text-white p-2 rounded w-full capitalize"
                   onClick={handleSubmit}
                >
-                  Đăng ký
+                  {isLogin}
                </button>
+               <div
+                  className="w-full flex justify-center mt-3 cursor-pointer"
+                  onClick={() => handleOnChangeFormState()}
+               >
+                  <p className="text-blue-500">
+                     {isLogin === AuthState.LOGIN ? "Sign up" : "Login"}
+                  </p>
+               </div>
             </form>
          </div>
       </div>

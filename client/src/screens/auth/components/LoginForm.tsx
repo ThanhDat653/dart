@@ -2,10 +2,8 @@ import React, { useState } from "react";
 
 const LoginForm = () => {
    let [user, setUser] = useState({
-      username: "",
       email: "",
       password: "",
-      phoneNumber: "",
    });
 
    const handleOnchangeValue = (event: any) => {
@@ -75,7 +73,7 @@ const LoginForm = () => {
                   className="bg-blue-500 text-white p-2 rounded w-full"
                   onClick={handleSubmit}
                >
-                  Đăng ký
+                  Đăng nhập
                </button>
             </form>
          </div>

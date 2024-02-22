@@ -1,11 +1,13 @@
-import React from "react";
-import LoginForm from "./components/LoginForm";
-import RegisterForm from "./components/RegisterForm";
+import LoadingAnimation from "../../animation/LoadingAnimation";
+import { Suspense } from "react";
+import { Outlet } from "react-router-dom";
 
 const Authentication = () => {
    return (
-      <div>
-         <RegisterForm />
+      <div className="w-screen h-screen">
+         <Suspense fallback={<LoadingAnimation />}>
+            <Outlet />
+         </Suspense>
       </div>
    );
 };

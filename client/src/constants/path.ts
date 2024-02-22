@@ -13,7 +13,6 @@ export const PATHS = {
    },
    AUTH: {
       IDENTIFY: "auth",
-      VARIANTS: `${ROUTE_PARAMS.AUTH_PARAMETER}`,
    },
    LOGIN: {
       IDENTITY: "login",

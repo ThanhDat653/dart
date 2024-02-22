@@ -3,6 +3,8 @@ import { useRoutes } from "react-router-dom";
 import LoadingAnimation from "../animation/LoadingAnimation";
 import HomeLayout from "../layouts/HomeLayout";
 import { PATHS } from "../constants/path";
+import LoginForm from "../screens/auth/components/LoginForm";
+import RegisterForm from "../screens/auth/components/RegisterForm";
 
 // Hero Section
 const HeroSection = lazy(() => import("../screens/landing/RootSection"));
@@ -33,7 +35,16 @@ const heroSectionRoute = {
 
 const authenticationRoute = {
    path: PATHS.AUTH.IDENTIFY,
-   element: <LazyLoadingComponent Children={Authentication} />,
+   children: [
+      {
+         path: PATHS.LOGIN,
+         element: <LazyLoadingComponent Children={LoginForm} />,
+      },
+      {
+         path: PATHS.REGISTER,
+         element: <LazyLoadingComponent Children={RegisterForm} />,
+      },
+   ],
 };
 
 const shopRoute = {
@@ -45,6 +56,11 @@ export default function AllRoutes() {
    return useRoutes([
       {
          path: "/",
+         element: <Authentication />,
+         children: [authenticationRoute],
+      },
+      {
+         path: "/",
          element: <HomeLayout />,
          children: [heroSectionRoute],
       },
@@ -52,11 +68,6 @@ export default function AllRoutes() {
          path: "/",
          element: <HomeLayout />,
          children: [shopRoute],
-      },
-      {
-         path: "/",
-         element: <HomeLayout />,
-         children: [authenticationRoute],
       },
    ]);
 }
